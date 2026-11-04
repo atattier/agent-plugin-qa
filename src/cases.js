@@ -201,7 +201,8 @@ export const checks = [
       );
       const skippedCount = deps.length - probeable.length;
 
-      const current = ctx.currentRegistry ??= await getCurrentRegistry(ctx.profile.dir, ctx.timeoutMs);
+      // 缓存用 undefined 哨兵而不是 ??=：探测失败返回 null 时 ??= 会反复重跑子进程
+      if (ctx.currentRegistry === undefined) ctx.currentRegistry = await getCurrentRegistry(ctx.profile.dir, ctx.timeoutMs);
       const registries = [];
       if (current) registries.push(current);
       if (!registries.includes(OFFICIAL_REGISTRY)) registries.push(OFFICIAL_REGISTRY);
@@ -286,7 +287,8 @@ export const checks = [
       if (ctx.offline) return { level: "skip", detail: "离线模式（--offline），跳过连通性检查" };
       const deps = declaredDeps(ctx.profile.packageJson);
       const sources = [];
-      const current = ctx.currentRegistry ??= await getCurrentRegistry(ctx.profile.dir, ctx.timeoutMs);
+      if (ctx.currentRegistry === undefined) ctx.currentRegistry = await getCurrentRegistry(ctx.profile.dir, ctx.timeoutMs);
+      const current = ctx.currentRegistry;
       const registryUrl = current ?? OFFICIAL_REGISTRY;
       sources.push({ name: `npm registry ${registryUrl}`, kind: "registry", url: registryUrl.replace(/\/$/, "") + "/npm" });
       if (current && !/registry\.npmjs\.org/.test(current)) {
