@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [20, 22, 24]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Run tests
+        run: npm test
+      - name: CLI smoke (fixture profile, offline)
+        run: node bin/agent-plugin-qa.js check --dir test/fixtures/sample-profile --offline --json > qa-report.json || true
+      - name: Validate smoke JSON
+        run: node -e "const r=require('./qa-report.json'); if(!r.results||r.results.length<9) process.exit(1)"

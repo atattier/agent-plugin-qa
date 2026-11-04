@@ -1,0 +1,14 @@
+{
+  "name": "sample-agent-profile",
+  "private": true,
+  "dependencies": {
+    "alpha-core": "^1.2.0",
+    "beta-tool": "2.0.1",
+    "gamma-skill": "github:example/gamma-skill"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": ["alpha-core", "beta-tool", "gamma-skill"]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+
+importers:
+  .:
+    dependencies:
+      alpha-core:
+        specifier: ^1.2.0
+        version: 1.2.5
+      beta-tool:
+        specifier: 2.0.1
+        version: 2.0.1
+
+packages:
+  'alpha-core@1.2.5':
+    resolution: {integrity: sha512-fake-alpha}
+
+  'beta-tool@2.0.1':
+    resolution: {integrity: sha512-fake-beta}
+
+  'gamma-skill@0.0.1':
+    resolution: {tarball: https://codeload.github.com/example/gamma-skill/tar.gz/main}
+
+snapshots:
+  'alpha-core@1.2.5': {}

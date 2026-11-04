@@ -1,0 +1,41 @@
+{
+  "name": "agent-plugin-qa",
+  "version": "0.1.0",
+  "description": "桌面 AI Agent 客户端插件安装/更新流程 QA 套件：清单一致性、lockfile 覆盖、版本可解析性、分源连通性、残留与补丁断言",
+  "bin": {
+    "agent-plugin-qa": "bin/agent-plugin-qa.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node test/run.js"
+  },
+  "keywords": [
+    "qa",
+    "plugin",
+    "agent",
+    "pnpm",
+    "lockfile",
+    "registry",
+    "mirror-lag",
+    "regression"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atattier/agent-plugin-qa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atattier/agent-plugin-qa/issues"
+  },
+  "homepage": "https://github.com/atattier/agent-plugin-qa#readme",
+  "author": "atattier",
+  "files": [
+    "bin",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT"
+}
