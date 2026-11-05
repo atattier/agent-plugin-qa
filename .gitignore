@@ -1,4 +1,7 @@
 node_modules/
+# 夹具里的 node_modules 是测试素材，必须入库（!规则需父目录不被忽略）
+!test/fixtures/**/node_modules/
+!test/fixtures/**/node_modules/**
 report.json
 qa-report.json
 *.log
